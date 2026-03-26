@@ -1,0 +1,80 @@
+<!--首页 - 地图导航页-->
+<view class="container">
+  <!-- 全屏地图 -->
+  <view class="map-container">
+    <map
+      id="roadMap"
+      class="road-map"
+      latitude="{{mapCenter.latitude}}"
+      longitude="{{mapCenter.longitude}}"
+      scale="{{mapCenter.scale}}"
+      markers="{{markers}}"
+      show-location="true"
+      enable-traffic="true"
+      enable-zoom="true"
+      enable-scroll="true"
+      enable-rotate="true"
+    >
+      <!-- 定位按钮 -->
+      <cover-view class="location-btn" bindtap="onLocationTap">
+        <cover-view class="location-icon-text">📍</cover-view>
+      </cover-view>
+    </map>
+  </view>
+
+  <!-- 推荐路口悬浮层 -->
+  <view class="recommend-overlay">
+    <view class="overlay-header">
+      <view class="header-left">
+        <text class="overlay-title">前方高速路口</text>
+        <text class="overlay-subtitle">为您找到{{recommendedNodes.length}}个</text>
+      </view>
+      <!-- 刷新按钮 -->
+      <view class="refresh-btn-header" bindtap="onRefresh" wx:if="{{!loading}}">
+        <text class="refresh-icon">🔄</text>
+        <text class="refresh-text">刷新</text>
+      </view>
+    </view>
+
+    <!-- 加载中 -->
+    <view class="loading-box" wx:if="{{loading}}">
+      <view class="loading-spinner"></view>
+      <text class="loading-text">正在为您推荐...</text>
+    </view>
+
+    <!-- 错误提示 -->
+    <view class="error-box" wx:elif="{{error}}">
+      <text class="error-icon">⚠️</text>
+      <text class="error-text">{{error}}</text>
+      <button class="retry-btn" bindtap="onRefresh">重新加载</button>
+    </view>
+
+    <!-- 路口列表 -->
+    <scroll-view class="node-scroll" scroll-y wx:elif="{{recommendedNodes.length > 0}}">
+      <view 
+        class="node-item" 
+        wx:for="{{recommendedNodes}}" 
+        wx:key="id"
+        data-nodeid="{{item.id}}"
+        bindtap="onNodeTap"
+      >
+        <view class="node-left">
+          <text class="node-name-blue">{{item.name}}</text>
+          <text class="node-highway">{{item.highway}}</text>
+        </view>
+        <view class="node-right">
+          <text class="node-distance">{{item.distanceText}}</text>
+          <text class="node-time">⏱️{{item.estimatedTime}}分钟</text>
+        </view>
+      </view>
+    </scroll-view>
+
+    <!-- 空状态 -->
+    <view class="empty-box" wx:else>
+      <text class="empty-icon">📍</text>
+      <text class="empty-text">暂无推荐路口</text>
+      <text class="empty-hint">请尝试移动到高速公路附近</text>
+      <button class="refresh-btn-large" bindtap="onRefresh">刷新位置</button>
+    </view>
+  </view>
+</view>

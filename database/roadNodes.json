@@ -1,0 +1,154 @@
+{
+  "roadNodes": [
+    {
+      "id": "1",
+      "name": "北京服务区",
+      "highway": "G2 京沪高速",
+      "latitude": 39.9042,
+      "longitude": 116.4074,
+      "milestone": "K15+500",
+      "facilities": ["加油站", "餐厅", "洗手间", "停车场"],
+      "description": "位于 G2 京沪高速北京段，距离北京市中心约 15 公里"
+    },
+    {
+      "id": "2",
+      "name": "廊坊北出口",
+      "highway": "G2 京沪高速",
+      "latitude": 39.5238,
+      "longitude": 116.6831,
+      "milestone": "K45+200",
+      "facilities": ["收费站", "加油站"],
+      "description": "G2 京沪高速廊坊市区北部出口"
+    },
+    {
+      "id": "3",
+      "name": "天津武清服务区",
+      "highway": "G2 京沪高速",
+      "latitude": 39.3782,
+      "longitude": 117.0137,
+      "milestone": "K78+800",
+      "facilities": ["加油站", "餐厅", "便利店", "洗手间", "停车场", "充电桩"],
+      "description": "G2 京沪高速天津武清段，设施齐全的大型服务区"
+    },
+    {
+      "id": "4",
+      "name": "沧州服务区",
+      "highway": "G2 京沪高速",
+      "latitude": 38.3037,
+      "longitude": 116.8386,
+      "milestone": "K145+600",
+      "facilities": ["加油站", "餐厅", "洗手间", "停车场"],
+      "description": "G2 京沪高速河北沧州段"
+    },
+    {
+      "id": "5",
+      "name": "德州东出口",
+      "highway": "G2 京沪高速",
+      "latitude": 37.4513,
+      "longitude": 116.3594,
+      "milestone": "K198+300",
+      "facilities": ["收费站", "加油站", "餐厅"],
+      "description": "G2 京沪高速山东德州东出口"
+    },
+    {
+      "id": "6",
+      "name": "济南服务区",
+      "highway": "G2 京沪高速",
+      "latitude": 36.6512,
+      "longitude": 117.1201,
+      "milestone": "K256+700",
+      "facilities": ["加油站", "餐厅", "便利店", "洗手间", "停车场", "维修站"],
+      "description": "G2 京沪高速济南段，提供车辆维修服务"
+    },
+    {
+      "id": "7",
+      "name": "泰安出口",
+      "highway": "G2 京沪高速",
+      "latitude": 36.2084,
+      "longitude": 117.0897,
+      "milestone": "K298+400",
+      "facilities": ["收费站", "加油站", "餐厅", "酒店"],
+      "description": "G2 京沪高速泰安出口，靠近泰山景区"
+    },
+    {
+      "id": "8",
+      "name": "曲阜服务区",
+      "highway": "G2 京沪高速",
+      "latitude": 35.5967,
+      "longitude": 116.9922,
+      "milestone": "K345+200",
+      "facilities": ["加油站", "餐厅", "便利店", "洗手间", "停车场", "特产店"],
+      "description": "G2 京沪高速曲阜段，临近孔子故里"
+    },
+    {
+      "id": "9",
+      "name": "惠州服务区",
+      "highway": "G25 长深高速",
+      "latitude": 23.0847,
+      "longitude": 114.3826,
+      "milestone": "K3582+200",
+      "facilities": ["加油站", "餐厅", "便利店", "洗手间", "停车场", "充电桩"],
+      "description": "G25 长深高速惠州段，设施齐全的大型服务区，距离惠州市中心约 8 公里"
+    },
+    {
+      "id": "10",
+      "name": "惠州东出口",
+      "highway": "G1523 甬莞高速",
+      "latitude": 23.0965,
+      "longitude": 114.4152,
+      "milestone": "K128+500",
+      "facilities": ["收费站", "加油站", "餐厅", "洗手间"],
+      "description": "G1523 甬莞高速惠州东出口，连接惠城区与大亚湾"
+    },
+    {
+      "id": "11",
+      "name": "惠阳服务区",
+      "highway": "G15 沈海高速",
+      "latitude": 22.7856,
+      "longitude": 114.4689,
+      "milestone": "K2845+600",
+      "facilities": ["加油站", "餐厅", "便利店", "洗手间", "停车场", "维修站"],
+      "description": "G15 沈海高速惠阳段，提供车辆维修服务"
+    },
+    {
+      "id": "12",
+      "name": "博罗出口",
+      "highway": "G35 济广高速",
+      "latitude": 23.1567,
+      "longitude": 114.2845,
+      "milestone": "K856+300",
+      "facilities": ["收费站", "加油站", "餐厅"],
+      "description": "G35 济广高速博罗出口，靠近罗浮山景区"
+    },
+    {
+      "id": "13",
+      "name": "龙门服务区",
+      "highway": "G0422 武深高速",
+      "latitude": 23.4823,
+      "longitude": 114.2456,
+      "milestone": "K678+900",
+      "facilities": ["加油站", "餐厅", "便利店", "洗手间", "停车场"],
+      "description": "G0422 武深高速龙门段，环境优美的山区服务区"
+    },
+    {
+      "id": "14",
+      "name": "大亚湾出口",
+      "highway": "G1523 甬莞高速",
+      "latitude": 22.7234,
+      "longitude": 114.5678,
+      "milestone": "K145+200",
+      "facilities": ["收费站", "加油站", "餐厅", "洗手间", "停车场"],
+      "description": "G1523 甬莞高速大亚湾出口，通往大亚湾核电站和滨海旅游区"
+    },
+    {
+      "id": "15",
+      "name": "仲恺高新区出口",
+      "highway": "G25 长深高速",
+      "latitude": 23.0234,
+      "longitude": 114.3456,
+      "milestone": "K3568+800",
+      "facilities": ["收费站", "加油站", "餐厅", "便利店"],
+      "description": "G25 长深高速仲恺高新区出口，连接惠州高新技术产业开发区"
+    }
+  ]
+}

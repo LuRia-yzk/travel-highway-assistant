@@ -1,0 +1,31 @@
+<!--POI 卡片组件-->
+<view class="poi-card" bindtap="onPOITap">
+  <view class="poi-card-image">
+    <image src="{{poi.image}}" mode="aspectFill" class="poi-image" />
+    <view class="poi-type-tag">{{poi.typeName}}</view>
+  </view>
+  
+  <view class="poi-card-content">
+    <view class="poi-card-name">{{poi.name}}</view>
+    
+    <view class="poi-card-rating" wx:if="{{poi.rating}}">
+      <text class="rating-stars">{{ratingStars}}</text>
+      <text class="rating-price" wx:if="{{poi.price}}">{{poi.price}}</text>
+    </view>
+    
+    <view class="poi-card-address">
+      <text class="address-icon">📍</text>
+      <text class="address-text">{{poi.address || poi.description}}</text>
+    </view>
+    
+    <view class="poi-card-distance">
+      <text class="distance-text">距离：{{poi.distanceText}}</text>
+    </view>
+  </view>
+
+  <view class="poi-card-actions" wx:if="{{showNavigate}}">
+    <button class="action-btn navigate-btn" catchtap="onNavigateTap">
+      导航
+    </button>
+  </view>
+</view>

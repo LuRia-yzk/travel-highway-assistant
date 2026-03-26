@@ -1,0 +1,232 @@
+<!--详情页 - 四个服务栏目-->
+<view class="container">
+  <!-- 顶部导航栏 -->
+  <view class="nav-header">
+    <view class="back-btn" bindtap="onBack">
+      <text class="back-icon">←</text>
+    </view>
+    <text class="page-title">{{nodeName}}</text>
+    <view class="placeholder"></view>
+  </view>
+
+  <!-- 四个导航栏目 -->
+  <view class="tab-nav">
+    <view 
+      class="tab-item {{currentTab === 'hotel' ? 'active' : ''}}" 
+      bindtap="onTabChange" 
+      data-tab="hotel"
+    >
+      <text class="tab-icon">🏨</text>
+      <text class="tab-text">酒店</text>
+    </view>
+    <view 
+      class="tab-item {{currentTab === 'food' ? 'active' : ''}}" 
+      bindtap="onTabChange" 
+      data-tab="food"
+    >
+      <text class="tab-icon">🍽️</text>
+      <text class="tab-text">美食</text>
+    </view>
+    <view 
+      class="tab-item {{currentTab === 'attraction' ? 'active' : ''}}" 
+      bindtap="onTabChange" 
+      data-tab="attraction"
+    >
+      <text class="tab-icon">🏛️</text>
+      <text class="tab-text">景点</text>
+    </view>
+    <view 
+      class="tab-item {{currentTab === 'community' ? 'active' : ''}}" 
+      bindtap="onTabChange" 
+      data-tab="community"
+    >
+      <text class="tab-icon">💬</text>
+      <text class="tab-text">社区</text>
+    </view>
+  </view>
+
+  <!-- 内容区域 -->
+  <scroll-view class="content-scroll" scroll-y>
+    
+    <!-- 酒店列表 -->
+    <view class="tab-content" wx:if="{{currentTab === 'hotel'}}">
+      <view class="section-title">
+        <text class="title-icon">🏨</text>
+        <text class="title-text">推荐酒店</text>
+        <text class="title-count">{{pois.hotel.length}}家</text>
+      </view>
+
+      <!-- 酒店列表 -->
+      <view class="poi-list">
+        <view 
+          class="poi-card" 
+          wx:for="{{pois.hotel}}" 
+          wx:key="id"
+          data-poiid="{{item.id}}"
+          bindtap="onPOITap"
+        >
+          <view class="poi-image">
+            <image src="{{item.image || '/images/default-hotel.png'}}" mode="aspectFill" class="poi-img" />
+            <view class="poi-tag" wx:if="{{item.recommend}}">AI 推荐</view>
+          </view>
+          <view class="poi-content">
+            <view class="poi-name">{{item.name}}</view>
+            <view class="poi-rating">
+              <text class="stars">⭐{{item.rating}}</text>
+              <text class="price" wx:if="{{item.price}}">¥{{item.price}}</text>
+            </view>
+            <view class="poi-info">
+              <text class="distance">📍 {{item.distanceText}}</text>
+              <text class="address">{{item.address}}</text>
+            </view>
+            <view class="poi-features" wx:if="{{item.features && item.features.length > 0}}">
+              <text class="feature-tag" wx:for="{{item.features}}" wx:key="*this">{{item}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <!-- 空状态 -->
+      <view class="empty-state" wx:if="{{pois.hotel.length === 0}}">
+        <text class="empty-emoji">🏨</text>
+        <text class="empty-text">暂无酒店信息</text>
+      </view>
+    </view>
+
+    <!-- 美食列表 -->
+    <view class="tab-content" wx:if="{{currentTab === 'food'}}">
+      <view class="section-title">
+        <text class="title-icon">🍽️</text>
+        <text class="title-text">周边美食</text>
+        <text class="title-count">{{pois.restaurant.length}}家</text>
+      </view>
+
+      <view class="poi-list">
+        <view 
+          class="poi-card" 
+          wx:for="{{pois.restaurant}}" 
+          wx:key="id"
+          data-poiid="{{item.id}}"
+          bindtap="onPOITap"
+        >
+          <view class="poi-image">
+            <image src="{{item.image || '/images/default-food.png'}}" mode="aspectFill" class="poi-img" />
+            <view class="poi-tag" wx:if="{{item.recommend}}">AI 推荐</view>
+          </view>
+          <view class="poi-content">
+            <view class="poi-name">{{item.name}}</view>
+            <view class="poi-rating">
+              <text class="stars">⭐{{item.rating}}</text>
+              <text class="price" wx:if="{{item.price}}">¥{{item.price}}/人</text>
+            </view>
+            <view class="poi-info">
+              <text class="distance">📍 {{item.distanceText}}</text>
+              <text class="cuisine">{{item.cuisine}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view class="empty-state" wx:if="{{pois.restaurant.length === 0}}">
+        <text class="empty-emoji">🍽️</text>
+        <text class="empty-text">暂无美食信息</text>
+      </view>
+    </view>
+
+    <!-- 景点列表 -->
+    <view class="tab-content" wx:if="{{currentTab === 'attraction'}}">
+      <view class="section-title">
+        <text class="title-icon">🏛️</text>
+        <text class="title-text">附近景点</text>
+        <text class="title-count">{{pois.attraction.length}}个</text>
+      </view>
+
+      <view class="poi-list">
+        <view 
+          class="poi-card" 
+          wx:for="{{pois.attraction}}" 
+          wx:key="id"
+          data-poiid="{{item.id}}"
+          bindtap="onPOITap"
+        >
+          <view class="poi-image">
+            <image src="{{item.image || '/images/default-attraction.png'}}" mode="aspectFill" class="poi-img" />
+            <view class="poi-tag" wx:if="{{item.recommend}}">必游</view>
+          </view>
+          <view class="poi-content">
+            <view class="poi-name">{{item.name}}</view>
+            <view class="poi-rating">
+              <text class="stars">⭐{{item.rating}}</text>
+              <text class="price" wx:if="{{item.price}}">¥{{item.price}}</text>
+            </view>
+            <view class="poi-info">
+              <text class="distance">📍 {{item.distanceText}}</text>
+              <text class="duration">⏱️ {{item.duration}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view class="empty-state" wx:if="{{pois.attraction.length === 0}}">
+        <text class="empty-emoji">🏛️</text>
+        <text class="empty-text">暂无景点信息</text>
+      </view>
+    </view>
+
+    <!-- 社区评论 -->
+    <view class="tab-content" wx:if="{{currentTab === 'community'}}">
+      <view class="section-title">
+        <text class="title-icon">💬</text>
+        <text class="title-text">用户评论</text>
+        <text class="title-count">{{comments.length}}条</text>
+      </view>
+
+      <!-- 发表评论 -->
+      <view class="comment-input-box">
+        <textarea 
+          class="comment-input" 
+          placeholder="分享您的体验..." 
+          maxlength="500"
+          value="{{commentText}}"
+          bindinput="onCommentInput"
+        />
+        <button class="submit-btn" bindtap="onSubmitComment">发表评论</button>
+      </view>
+
+      <!-- 评论列表 -->
+      <view class="comment-list">
+        <view class="comment-item" wx:for="{{comments}}" wx:key="id">
+          <view class="user-avatar">
+            <image src="{{item.avatar || '/images/default-avatar.png'}}" class="avatar" />
+          </view>
+          <view class="comment-content">
+            <view class="user-info">
+              <text class="username">{{item.username}}</text>
+              <text class="comment-time">{{item.time}}</text>
+            </view>
+            <view class="comment-text">{{item.content}}</view>
+            <view class="comment-images" wx:if="{{item.images && item.images.length > 0}}">
+              <image wx:for="{{item.images}}" wx:key="*this" src="{{item}}" class="comment-img" />
+            </view>
+            <view class="comment-actions">
+              <view class="action-item" bindtap="onLike" data-commentid="{{item.id}}">
+                <text class="action-icon">👍</text>
+                <text class="action-text">{{item.likes}}</text>
+              </view>
+              <view class="action-item" bindtap="onReply" data-commentid="{{item.id}}">
+                <text class="action-icon">💬</text>
+                <text class="action-text">回复</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view class="empty-state" wx:if="{{comments.length === 0}}">
+        <text class="empty-emoji">💬</text>
+        <text class="empty-text">暂无评论，快来抢沙发</text>
+      </view>
+    </view>
+
+  </scroll-view>
+</view>

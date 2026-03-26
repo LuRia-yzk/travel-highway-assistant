@@ -1,0 +1,58 @@
+travel-highway-assistant/
+├── frontend/                  # 微信小程序前端代码
+│   ├── pages/                 # 页面文件夹
+│   │   ├── index/             # 首页（地图展示、推荐路口）
+│   │   │   ├── index.js       # 页面逻辑：获取用户位置，请求后端推荐路口数据
+│   │   │   ├── index.json     # 页面配置：导航栏标题、背景色等
+│   │   │   ├── index.wxml     # 页面结构：地图组件、路口列表卡片
+│   │   │   └── index.wxss     # 页面样式：布局、颜色、字体等
+│   │   └── detail/            # 详情页（展示指定路口的酒店/饭店/景点列表）
+│   │       ├── detail.js      # 页面逻辑：接收路口ID，请求后端获取该路口周边POI
+│   │       ├── detail.json    # 页面配置
+│   │       ├── detail.wxml    # 页面结构：POI列表，支持分类切换
+│   │       └── detail.wxss    # 页面样式
+│   ├── components/            # 自定义组件（提高代码复用）
+│   │   └── poi-item/          # 兴趣点（POI）卡片组件
+│   │       ├── poi-item.js    # 组件逻辑：接收POI数据并渲染
+│   │       ├── poi-item.json  # 组件配置
+│   │       ├── poi-item.wxml  # 组件结构：图片、名称、距离、评分等
+│   │       └── poi-item.wxss  # 组件样式
+│   ├── utils/                 # 工具函数
+│   │   ├── util.js            # 通用工具：格式化时间、计算距离等
+│   │   └── request.js         # 封装网络请求：统一调用后端API，处理错误和加载状态
+│   ├── app.js                 # 小程序全局逻辑：初始化全局数据，监听生命周期
+│   ├── app.json               # 全局配置：注册所有页面，设置窗口样式，配置tabBar（若有）
+│   ├── app.wxss               # 全局样式：定义全局CSS变量、公共样式
+│   └── project.config.json    # 项目配置文件（微信开发者工具自动生成）
+│
+├── backend/                   # 后端服务（Node.js + Express）
+│   ├── node_modules/          # 依赖模块（npm install 后生成）
+│   ├── config/                # 配置文件
+│   │   └── index.js           # 导出配置：高德地图API Key、服务器端口、数据库路径等
+│   ├── controllers/           # 控制器（处理具体业务逻辑）
+│   │   ├── highwayController.js  # 处理高速相关请求：根据用户位置推荐前方2-4个路口
+│   │   └── poiController.js      # 处理POI相关请求：获取指定路口附近的酒店/饭店/景点
+│   ├── models/                # 数据模型（操作数据库或JSON文件）
+│   │   ├── roadNodeModel.js   # 路口模型：读取/写入路口数据，提供查询方法
+│   │   └── poiModel.js        # POI模型：读取/写入POI数据，按路口ID或坐标查询
+│   ├── routes/                # 路由定义
+│   │   ├── highwayRoutes.js   # 定义 /api/highway 相关路由（如 GET /recommend）
+│   │   └── poiRoutes.js       # 定义 /api/poi 相关路由（如 GET /by-exit/:exitId）
+│   ├── services/              # 服务层（调用外部API）
+│   │   └── amapService.js     # 封装高德地图API：如逆地理编码、周边搜索、路径规划等
+│   ├── utils/                 # 后端工具函数
+│   │   ├── logger.js          # 日志记录工具
+│   │   └── geoUtil.js         # 地理计算工具：计算距离、判断路口前后顺序等
+│   ├── app.js                 # Express应用入口：设置中间件（CORS、JSON解析），挂载路由
+│   ├── server.js              # 服务器启动文件：监听端口，连接数据库（如有）
+│   ├── package.json           # 项目依赖和脚本（定义依赖包和启动命令）
+│   └── .env                   # 环境变量（存放高德Key等敏感信息，不提交到Git）
+│
+├── database/                  # 数据库（本地测试用JSON文件）
+│   ├── roadNodes.json         # 高速路口数据：预定义路口信息（id、名称、经纬度、所属高速、里程桩号）
+│   ├── pois.json              # 兴趣点数据：预定义酒店/饭店/景点信息（id、名称、类型、经纬度、所属路口ID、简介）
+│   └── init.js                # 可选：初始化脚本（如生成模拟数据、检查文件结构）
+│
+└── README.md                  # 项目说明文档：介绍项目结构、启动方式、注意事项
+
+注意，我用的是高德开放平台上的key和密钥。Web服务的key是d6653d2caaaea2260d7d6b339a14c640。Web端的key是1ea92d862c6a02177889b87ddbaa2e15，安全密钥是	6e844b4f91c859569af561240ae3dcf9。
